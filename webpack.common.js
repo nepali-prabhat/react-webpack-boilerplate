@@ -1,45 +1,41 @@
 var path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
-var {CleanWebpackPlugin} = require("clean-webpack-plugin");
+WebpackBar = require('webpackbar');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: "./src/index.js",
     module: {
         rules: [
             { 
-                test: /\.(js)$/, 
-                exclude:/(node_modules)/,
+                test: /\.(js|jsx)$/,
+                exclude:/node_modules/,
                 use: 'babel-loader'
             },
-            { 
-                test: /\.(scss)$/, 
-                use: [ 'style-loader', 'css-loader', 'sass-loader']
-            },
             {
-                test: /\.(gif|png|jpe?g|svg)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: 'assets/images/',
-                            name: '[name].[contenthash].[ext]'
-                        }
-                    },
-                    {
-                        loader: 'image-webpack-loader',
-                        options: {
-                        bypassOnDebug: true, // webpack@1.x
-                        disable: true, // webpack@2.x and newer
-                        },
-                    },
-                ],
-            }
+                test: /\.html$/,
+                loader: 'html-loader'
+            },
         ]
     },
     plugins:[
-        new HtmlWebpackPlugin({
-            template: 'public/index.html'
-        }),
-        new CleanWebpackPlugin(),
-    ]
+        new WebpackBar(),
+        //works only in production for some reason
+        new CopyWebpackPlugin([
+            { from: './public/fav', to: 'fav' }
+        ], { copyUnmodified: false })
+    ],
+    resolve: {
+        alias: {
+            utils: path.resolve(__dirname, 'src/utils/'),
+            components: path.resolve(__dirname, 'src/components/'),
+            views: path.resolve(__dirname, 'src/views/'),
+            img: path.resolve(__dirname, 'src/img/'),
+            scss: path.resolve(__dirname, 'src/scss')
+        },
+    },
+    devServer:{
+        noInfo: true,
+        stats: 'minimal'
+    }
 }
