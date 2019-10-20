@@ -1,4 +1,5 @@
 # React Webpack Boilerplate
+Boiler plate for webpack, babbel and react.
 
 ## Basic
 ```
@@ -27,6 +28,8 @@
 
 6.  Source map for easy debugging
 
+7.  Optimizations: JS, HTML, CSS
+
 ```
 
 ## Globals
@@ -36,14 +39,18 @@
 2.  process.env ({SESSION_IP})
 ```
 
-## _Limitations/ToDo_
+## ToDo / Limitations
 ```
-1. No proper env port setup (uses default)
-2. No svg setup (I'd use SVGOMG and SVGR for making concise svg component)
-3. No es6 babbel loader for node_modules 
+1. No server-side rendering (difficult to find by web crawlers and recommendations)
+
+2. No proper env port setup (uses default)
+
+3. No svg setup (I'd use SVGOMG and SVGR for making concise svg component)
+
+4. No es6 babbel loader for node_modules 
 ```
 
 ## __Note:__
->If any modules use es6, use this package to find and solve using regex
+>**https://github.com/obahareth/are-you-es5 -are-you-es5!**
 >
->https://github.com/obahareth/are-you-es5 -are-you-es5!
+>If any modules use es6 and your application breaks, use this package to find and solve using regex
