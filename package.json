@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gsap": "^2.1.3",
+    "gsap": "^3.6.0",
     "lodash": "^4.17.15",
     "react": "^16.10.2",
     "react-dom": "^16.10.2"
